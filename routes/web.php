@@ -12,5 +12,11 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('index');
 });
+Route::resource('dolladeposit', 'DepositController');
+Route::resource('dollawithdraw', 'Withdrawcontroller');
+
+Route::get('login','AuthController@getlogin')->name('login');
+Route::post('login','AuthController@postlogin');
+Route::get('logout','AuthController@logout');
