@@ -41,13 +41,13 @@ class DepositController extends Controller
     {
          $rules =[
              'username' => 'required|min:5',
-             'balance' => 'required',
+             'balance' => 'required|min:8',
             'bankdeposit' => 'required',
             'accountnumberdeposit' => 'required',
             'accontnamedeposit' => 'required',
             'datetime' => 'required',
              'channeldeposit' => 'required',
-            'tel' => 'required',
+            'tel' => 'required|max:5',
              'opinion' => 'required'
          ];
 
