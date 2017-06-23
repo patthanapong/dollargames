@@ -19,7 +19,7 @@
     </tr>
     @foreach($deposit as $d)
     <tr>
-        <tdtd>
+        
         <td>{{ $d->id }}</td>
         <td>{{ $d->username }}</td>
         <td>{{ $d->balance }}</td>
@@ -30,7 +30,7 @@
         <td>{{ $d->channeldeposit }}</td>
         <td>{{ $d->tel }}</td>
         <td>{{ $d->opinion }}</td>
-        <td><a href="/dolla//edit" class="btn btn-default">Edit</a></td>
+        <td><a href="/dolladeposit/{{ $d->id }}/edit" class="btn btn-default">Edit</a></td>{{-- ต้องส่งตัวแปร id ไปด้วย --}}
     </tr>
       @endforeach
 </table>

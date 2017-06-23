@@ -12,6 +12,19 @@ class DepositController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+     private $rules =[
+             'username' => 'required|min:5',
+             'balance' => 'required|max:8',
+            'bankdeposit' => 'required',
+            'accountnumberdeposit' => 'required',
+            'accontnamedeposit' => 'required',
+            'datetime' => 'required',
+            'channeldeposit' => 'required',
+            'tel' => 'required|max:10',
+             'opinion' => 'required'
+         ];//ตัวแปรเรียกเอาไปเทียบค่า
+
+
     public function index()
     {
         $deposit = DB::table('deposit')
@@ -46,7 +59,7 @@ class DepositController extends Controller
             'accountnumberdeposit' => 'required',
             'accontnamedeposit' => 'required',
             'datetime' => 'required',
-             'channeldeposit' => 'required',
+            'channeldeposit' => 'required',
             'tel' => 'required|max:10',
              'opinion' => 'required'
          ];
@@ -86,7 +99,11 @@ class DepositController extends Controller
      */
     public function edit($id)
     {
-        //
+        $deposit = DB::table('deposit') 
+        ->where('id', $id)
+        ->first();
+
+        return view('deposit.edit',compact('deposit'));
     }
 
     /**
@@ -98,7 +115,13 @@ class DepositController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $datas = request()->except(['_token','_method']);
+        $this->validate($request, $this->rules);
+
+        DB::table('deposit')
+            ->where('id', $id)
+            ->update($datas);
+            return redirect('/dolladeposit');
     }
 
     /**
