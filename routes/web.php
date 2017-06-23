@@ -18,5 +18,8 @@ Route::resource('dolladeposit', 'DepositController');
 Route::resource('dollawithdraw', 'Withdrawcontroller');
 
 Route::get('login','AuthController@getlogin')->name('login');
+Route::get('register', 'AuthController@register');
+Route::post('register', 'AuthController@store');
 Route::post('login','AuthController@postlogin');
 Route::get('logout','AuthController@logout');
+

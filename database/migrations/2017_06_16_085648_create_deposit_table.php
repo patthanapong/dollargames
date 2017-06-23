@@ -34,6 +34,6 @@ class CreateDepositTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('deposit');
     }
 }

@@ -33,6 +33,6 @@ class CreateStatementdepositTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('statementdeposit');
     }
 }

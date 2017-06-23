@@ -19,7 +19,7 @@ class CreateUsersTable extends Migration
             $table->string('username')->unique();
             $table->string('password');
             $table->string('status')->default();
-            $table->integer('balance')->unsigned();
+            $table->float('balance')->default('0');
             $table->rememberToken();
             $table->timestamps();
         });

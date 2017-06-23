@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use DB;
 
 class AuthController extends Controller
 {
@@ -11,6 +12,9 @@ class AuthController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+
+
     public function getlogin()
     {
         return view('auth.login');
@@ -45,9 +49,29 @@ class AuthController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+     public function register()
+     {
+        return view('auth.register');
+     }
+
     public function store(Request $request)
     {
-        //
+        $name = request('name');
+        $username = request('username');
+        $password = bcrypt(request('password'));
+        $status = request('status');
+
+    DB::table('users')->insert([
+        'name' => $name,
+        'username' => $username,
+        'password' => $password,
+        'status' => $status
+
+    ]);
+        $users = DB::table('users')
+        ->paginate(5);
+        
+        return redirect('/');
     }
 
     /**

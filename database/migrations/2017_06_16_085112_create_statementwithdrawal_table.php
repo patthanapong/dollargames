@@ -36,6 +36,7 @@ class CreateStatementwithdrawalTable extends Migration
      */
     public function down()
     {
-        //
+         Schema::dropIfExists('statementwithdraw');
+
     }
 }
