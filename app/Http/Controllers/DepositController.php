@@ -41,28 +41,29 @@ class DepositController extends Controller
     {
          $rules =[
              'username' => 'required|min:5',
-             'balance' => 'required|min:8',
+             'balance' => 'required|max:8',
             'bankdeposit' => 'required',
             'accountnumberdeposit' => 'required',
             'accontnamedeposit' => 'required',
             'datetime' => 'required',
              'channeldeposit' => 'required',
-            'tel' => 'required|max:5',
+            'tel' => 'required|max:10',
              'opinion' => 'required'
          ];
 
-         $datas = request()->except([ '_token' ]);
-         $this->validate($request,$rules);
+           $datas = request()->except([ '_token' ]);
+          $this->validate($request,$rules);
 
          try{
         
             DB::table('deposit')
             ->insert($datas);
 
-            return redirect('/dolladeposit');
+             return redirect('/dolladeposit');
              } catch (Exception $d) {
                  abor(500);
              }
+        
 
     }
 
