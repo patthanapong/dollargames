@@ -26,7 +26,7 @@ class Withdrawcontroller extends Controller
      */
     public function create()
     {
-        return view('withdraw.create' , compact('withdraw'));
+        return view('withdraw.create');
     }
 
     /**
@@ -37,30 +37,29 @@ class Withdrawcontroller extends Controller
      */
     public function store(Request $request)
     {
-        // $rules =[
-        //      'username' => 'required|min:5',
-        //      'balance' => 'required',
-        //     'bankwithdrawal' => 'required',
-        //     'accountnumberwithdrawal' => 'required',
-        //     'accontnamewithdrawal' => 'required',
-        //     'datetime' => 'required',
-        //      'channelwithdraw' => 'required',
-        //     'tel' => 'required',
-        //      'opinion' => 'required'
-        //  ];
+        $rules =[
+            'username' => 'required',
+            'balance' => 'required',
+            'bankwithdrawal' => 'required',
+            'accountnumberwithdrawal' => 'required',
+            'accountnamewithdrawal' => 'required',
+            'datetime' => 'required',
+            'channelwithdraw' => 'required',
+            'tel' => 'required',
+            'opinion' => 'required'
+         ];
 
          $datas = request()->except([ '_token' ]);
-        //  $this->validate($request,$rules);
+         $this->validate($request,$rules);
 
-        //  try{
+        try{
         
             DB::table('withdrawal')
             ->insert($datas);
-
             return redirect('/dollawithdraw');
-            //  } catch (Exception $d) {
-            //      abor(500);
-            //  }
+             } catch (Exception $w) {
+                 abor(500);
+             }
     }
 
     /**
@@ -82,7 +81,11 @@ class Withdrawcontroller extends Controller
      */
     public function edit($id)
     {
-        //
+        $withdraw = DB::table('withdrawal')
+        ->where('id', $id)
+        ->first();
+
+        return view('withdraw.edit' , compact('withdraw'));
     }
 
     /**
@@ -94,7 +97,13 @@ class Withdrawcontroller extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $datas = request()->except(['_token','_method']);
+        
+
+        DB::table('withdrawal')
+            ->where('id', $id)
+            ->update($datas);
+            return redirect('/dollawithdraw');
     }
 
     /**

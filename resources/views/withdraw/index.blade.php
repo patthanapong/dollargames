@@ -29,7 +29,7 @@
         <td>{{ $w->channelwithdraw }}</td>
         <td>{{ $w->tel }}</td>
         <td>{{ $w->opinion }}</td>
-        <td><a href="/dolla/edit" class="btn btn-default">Edit</a></td>
+        <td><a href="/dollawithdraw/{{ $w->id }}/edit" class="btn btn-default">Edit</a></td>
     </tr>
       @endforeach
 </table>
